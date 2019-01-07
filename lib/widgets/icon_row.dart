@@ -14,7 +14,6 @@ class IconRow extends StatefulWidget {
 }
 
 class IconRowState extends State<IconRow> {
-
   final Player _player;
 
   IconRowState(this._player);
@@ -25,10 +24,10 @@ class IconRowState extends State<IconRow> {
     }); 
   }
   
-  Widget _buildRadioButton(Player p, int btnNum) {
+  Widget _buildRadioButton(int btnNum) {
     return Radio(
       value: btnNum,
-      groupValue: p.playID,
+      groupValue: -1,
       onChanged: _setPlayerIcon,
     );
   }
@@ -40,13 +39,13 @@ class IconRowState extends State<IconRow> {
       padding: EdgeInsets.symmetric(vertical: 5.0),
       child: Row(
         children: <Widget>[
-          _buildRadioButton(_player, 1),
+          _buildRadioButton(1),
           Image.asset('assets/images/pieces/piece1.png'),
-          _buildRadioButton(_player, 2),
+          _buildRadioButton(2),
           Image.asset('assets/images/pieces/piece2.png'),
-          _buildRadioButton(_player, 3),
+          _buildRadioButton(3),
           Image.asset('assets/images/pieces/piece3.png'),
-         _buildRadioButton(_player, 4),
+         _buildRadioButton(4),
           Image.asset('assets/images/pieces/piece4.png'),
         ],
       )

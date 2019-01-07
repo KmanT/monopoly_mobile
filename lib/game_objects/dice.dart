@@ -1,28 +1,22 @@
 import 'dart:math';
 
 class Dice{
-  static const int DIE_MIN = 1;
-  static const int DIE_MAX = 6;
-  int _dieOne = DIE_MIN;
-  int _dieTwo = DIE_MIN;
+  static const int dieMin = 1;
+  static const int dieMax = 6;
+  int _dieOne = dieMin;
+  int _dieTwo = dieMin;
 
   Random rand = Random.secure();
 
   void roll() {
-    _dieOne = rand.nextInt(DIE_MAX) + DIE_MIN;
-    _dieTwo = rand.nextInt(DIE_MAX) + DIE_MIN;
+    _dieOne = rand.nextInt(dieMax) + dieMin;
+    _dieTwo = rand.nextInt(dieMax) + dieMin;
   }
 
-  int get dieOne {
-    return _dieOne;
-  }
+  int get dieOne => _dieOne;
 
-  int get dieTwo {
-    return _dieTwo;
-  }
+  int get dieTwo => _dieTwo;
 
-  int get totalRoll {
-    return _dieOne + _dieTwo;
-  }
+  int get totalRoll => _dieOne + _dieTwo;
 
 }

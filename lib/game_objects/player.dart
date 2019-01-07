@@ -1,6 +1,6 @@
 class Player {
   final int _playID;
-  String _name;
+  String _name = 'Player';
   int _pieceID = 0;
   int _balance = 1500;
   int _position = 0;
@@ -11,8 +11,8 @@ class Player {
 
   int get playID => _playID;
 
-  set name(String val) => _name;
-  
+  set name(String val) => _name = val;
+   
   String get name => _name;
 
   set pieceID(int id) => _pieceID = id;

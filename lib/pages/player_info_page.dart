@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../game_objects/player.dart';
+import '../widgets/name_input_row.dart';
 import '../widgets/icon_row.dart';
 
 class PlayerInfoPage extends StatefulWidget {
   final int _playerCount;
-  List<Player> _playerList = [];
+  final List<Player> _playerList = [];
 
   PlayerInfoPage(this._playerCount);
 
@@ -33,21 +34,7 @@ class _PlayerInfoState extends State<PlayerInfoPage> {
   Widget _buildPlayerRow(String lblName, Player p) {
     return Column(
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Flexible(
-              child: TextFormField(
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Theme.of(context).primaryColor
-                ),
-                decoration: InputDecoration(
-                  labelText: lblName
-                ),
-              )
-            ),
-          ]
-        ),
+        NameInputRow(lblName, p),
         IconRow(p)
       ]
     );
@@ -70,49 +57,21 @@ class _PlayerInfoState extends State<PlayerInfoPage> {
   }
 
   void _startGame() {
+    _formKey.currentState.save();
     for (Player p in _playerList) {
-      print("Player ${p.playID} ${p.pieceID}");
+      print("${p.name} ${p.playID} ${p.pieceID}");
     }
   }
 
   Widget _buildPlayerForm() {
-    if (_playerCount == 1) {
-      return Column (
-        children: <Widget>[
-          _buildPlayerRow('Player 1', _playerList[0]),
-          _buildContinueButton()
-        ]
-      );
-    } else if (_playerCount == 2) {
-      return Column (
-        children: <Widget>[
-          _buildPlayerRow('Player 1', _playerList[0]),
-          _buildPlayerRow('Player 2', _playerList[1]),
-          _buildContinueButton()
-        ]
-      );
-    } else if (_playerCount == 3) {
-      return Column (
-        children: <Widget>[
-          _buildPlayerRow('Player 1', _playerList[0]),
-          _buildPlayerRow('Player 2', _playerList[1]),
-          _buildPlayerRow('Player 3', _playerList[2]),
-          _buildContinueButton()
-        ]
-      );
-    } else  {
-      return Column (
-        children: <Widget>[
-          _buildPlayerRow('Player 1', _playerList[0]),
-          _buildPlayerRow('Player 2', _playerList[1]),
-          _buildPlayerRow('Player 3', _playerList[2]),
-          _buildPlayerRow('Player 4', _playerList[3]),
-          _buildContinueButton()
-        ]
-      );
+    List<Widget> formList = [];
+    for (Player p in _playerList) {
+      formList.add(_buildPlayerRow("Player ${p.playID}", p));
     }
+    formList.add(_buildContinueButton());
+    return Column (children: formList);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

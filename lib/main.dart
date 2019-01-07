@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './main_theme_data.dart';
 import './pages/start_page.dart';
 import './pages/player_count_page.dart';
 import './pages/player_info_page.dart';
@@ -11,22 +12,14 @@ class MyApp extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _MyAppState();
   }
-
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Monopoly',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Color.fromRGBO(0, 101, 164, 1.0),
-        accentColor: Color.fromRGBO(102, 196, 255, 1.0),
-        buttonColor: Color.fromRGBO(0, 101, 164, 1.0),
-        fontFamily: 'OpenSans'
-      ),
+      theme: MainThemeData.getThemeData(),
       routes: {
         '/': (BuildContext context) => StartPage(),
         '/count': (BuildContext context) => PlayerCountPage()
